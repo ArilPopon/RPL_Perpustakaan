@@ -16,12 +16,12 @@ class UserComponent extends Component
     {
         $layout['title'] = "Kelola Staf";
         if ($this->cari != "") {
-            $data['user'] = User::where('nama', 'like', '%' . $this->cari . '%')
-                ->orwhere('email', 'like', '%' . $this->cari . '%')
+            $data['user'] = User::where('jenis', 'admin')
+                ->where('nama', 'like', '%' . $this->cari . '%')
                 ->paginate(10);
         } else {
-            $data['user'] = User::paginate(10);
-        };
+            $data['user'] = User::where('jenis', 'admin')->paginate(10);
+        }
         return view('livewire.user-component', $data)->layoutData($layout);
     }
 

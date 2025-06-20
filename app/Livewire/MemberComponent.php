@@ -15,12 +15,13 @@ class MemberComponent extends Component
     public function render()
     {
         if ($this->cari != "") {
-            $data['member'] = User::where('nama', 'like', '%' . $this->cari . '%')
+            $data['member'] = User::where('jenis', 'member')
+                ->where('nama', 'like', '%' . $this->cari . '%')
                 ->paginate(10);
         } else {
-
             $data['member'] = User::where('jenis', 'member')->paginate(10);
         }
+
         $layout['title'] = 'Kelola Anggota';
         return view('livewire.member-component', $data)->layoutData($layout);
     }
